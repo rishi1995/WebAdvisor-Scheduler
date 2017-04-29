@@ -1,6 +1,6 @@
 import os
 import re
-
+import time
 # Use the Selenium WebDriver to access internet
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
@@ -73,7 +73,7 @@ def scrape_courses(debug=False, **params):
             driver.switch_to.window(driver.window_handles[-1])
             # driver.set_window_size(1280, 1024)
             # Read data from tab
-
+            time.sleep(1)
             # Checks to see if valid data was received
             try:
                 driver.find_element_by_name('CLOSE WINDOW2')
@@ -81,10 +81,6 @@ def scrape_courses(debug=False, **params):
                 driver.find_element_by_name('CLOSE WINDOW2').click()
             except NoSuchElementException:
                 print("Invalid Data")
-                with open(id + '.html', 'w') as f:
-                    f.write(driver.page_source)
-                driver.close()
-
             entry += 1
             driver.switch_to.window(driver.window_handles[0])
             id = 'SEC_SHORT_TITLE_' + str(entry)

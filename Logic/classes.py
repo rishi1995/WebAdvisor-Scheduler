@@ -100,10 +100,8 @@ def parse_meeting_string(meeting_string):
         values['meeting_type'] = type_regex.search(s).group(1)
         s = type_regex.sub('', s)
         recurrence_string = recurrence_regex.search(s).group(0).strip(', ')
-        recurrences = recurrence_string.split(', ')
-        for day in recurrences:
-            day
-
+        values['recurrences'] = recurrence_string.split(', ')
+        
         s = recurrence_regex.sub('', s)
         s.replace('TBA', 'TBA, ')
 
@@ -112,7 +110,7 @@ def parse_meeting_string(meeting_string):
 
         values['start_time'] = datetime.datetime.strptime(start_time, '%I:%M%p').time()
         values['end_time'] = datetime.datetime.strptime(end_time, '%I:%M%p').time()
-
+        meetings.append(Meeting(**values))
 
 
 

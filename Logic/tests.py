@@ -8,7 +8,7 @@ import pickle
 # print(len(calc1))
 
 # Searches for ENGL 101A, which has 31 sections over 2 pages
-query_2 = {'term': '2017SP', 'subject': 'ENGL', 'course_number': '', 'section': ''}
+query_2 = {'term': '2017SP', 'subject': 'ENGL', 'course_number': '101A', 'section': ''}
 engl1 = scraper.scrape_courses(debug=True, **query_2)
 c = classes.Course(engl1)
 print(len(engl1))
